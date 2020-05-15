@@ -50,13 +50,15 @@ Edit tsconfig to make sure the typescript compiler finds
 Create a server file, src/main.ts:
 ```
 import express = require('express');
+
 // Create a new express app instance
-const app: express.Application = express();
-app.get('/', function (req, res) {
-res.send('Hello World!');
+const application: express.Application = express();
+
+application.get('/', function (_, response) {
+  response.send('Hello World!');
 });
-app.listen(8080, function () {
-console.log('App is listening on port 8080!');
+application.listen(8080, function () {
+    console.log('App is listening on port 8080!');
 });
 ```
 Add a build and run-command to package.json:
@@ -82,16 +84,21 @@ npm install request
 ```
 Add a new endpoint:
 ```
+import request from 'request';
+
 interface JokeDTO {
     joke: string
 }
 
-app.get("/api/v1/joke", (req, res) => {
-    request.get("https://icanhazdadjoke.com/", {json: true, headers: {"Accept": "application/json"}}, (error, response, body) => {
-        const jokeDTO = body as JokeDTO;
-        console.log(jokeDTO)
-        res.send({joke: jokeDTO.joke})
-    })
+application.get('/api/v1/joke', (_, response) => {
+  request.get('https://icanhazdadjoke.com/', {
+    json: true,
+    headers: {'Accept': 'application/json'}
+  }, (error, _, body) => {
+    const jokeDTO = body as JokeDTO;
+    console.log(jokeDTO)
+    response.send({joke: jokeDTO.joke})
+  });
 });
 ```
 https://nodejs.org/fr/docs/guides/nodejs-docker-webapp/
