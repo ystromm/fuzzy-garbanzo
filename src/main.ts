@@ -24,6 +24,18 @@ application.get('/api/v1/joke', (_, response) => {
   });
 });
 
+application.get('/api/v1/joke/:joke_id', (req, response) => {
+  const joke_id = req.params.joke_id;
+  request.get(`https://icanhazdadjoke.com/j/${joke_id}`, {
+    json: true,
+    headers: {'Accept': 'application/json'}
+  }, (error, _, body) => {
+    const jokeDTO = body as JokeDTO;
+    console.log(jokeDTO)
+    response.send({joke: jokeDTO.joke})
+  });
+});
+
 application.listen(port, () => {
   console.log(`Server started on port ${port}`)
 });
