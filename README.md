@@ -39,7 +39,7 @@ Edit tsconfig to make sure the typescript compiler finds
     ...
   },
   "include": [
-      "src/**/*"
+      "src/**/*.ts"
   ],
   "exclude": [
     "./node_modules",
@@ -77,7 +77,7 @@ npm run start
 ```
 Add in a http client:
 ```
-npm install @types/requst
+npm install @types/request
 npm install request
 ```
 Add a new endpoint:
