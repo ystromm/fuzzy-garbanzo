@@ -4,6 +4,8 @@
   "description": "Empty directory. ``` mkdir backend cd backend git init ``` Create node project. ``` npm init ``` Pull in typescript. ``` npm install typescript ``` Init typescript config, ``` npx tsc --init ``` Pull in express; simple HTTP server. ``` npm install @types/express npm install express ``` Ignore stuff, create .gitignore. ``` node_modules dist .idea *.iml ``` Edit tsconfig to make sure the typescript compiler finds  ``` {   \"compilerOptions\": {     ...     \"outDir\": \"dist\"     ...   },   \"include\": [       \"src/**/*\"   ],   \"exclude\": [     \"./node_modules\",     \"src/**/*.spec.ts\"   ] } ``` Create a server file, src/main.ts: ``` import express = require('express'); // Create a new express app instance const app: express.Application = express(); app.get('/', function (req, res) { res.send('Hello World!'); }); app.listen(8080, function () { console.log('App is listening on port 8080!'); }); ``` Add a build and run-command to package.json: ``` {   ...   \"scripts\": {     ...     \"build\": \"tsc\",     \"start\": \"npm run build && node ./dist/main.js\"   }   ... } ``` Start the server locally: ``` npm run start ``` Add in a http client: ``` npm install @types/requst npm install request ``` Add a new endpoint: ``` interface JokeDTO {     joke: string }",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "npm run build&& node dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
