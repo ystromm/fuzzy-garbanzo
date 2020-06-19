@@ -51,8 +51,3 @@ application.listen(port, () => {
   console.log(`Server started on port ${port}`)
 });
 
-
-// Consumer Key: evgty5tg9ilfttkywf4i4g0anhj82gm7
-// Consumer Secret: 16711rvn1xty24607otf2y4z9htuddn4
-// access token: ju5w3bc37upnm8g42dey3pdfif2f41rh
-// access token secret: yfwb2grb7aggaeahlqvqbryae1yjehlu
